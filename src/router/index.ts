@@ -1,5 +1,11 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
+declare module 'vue-router' {
+  interface RouteMeta {
+    title: string;
+  }
+}
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -40,6 +46,10 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+});
+
+router.afterEach((to) => {
+  document.title = to.meta.title;
 });
 
 export default router;

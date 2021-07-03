@@ -23,7 +23,16 @@ self.MonacoEnvironment = {
   },
 };
 
-const CODE_INIT = 'console.log("Hello World!")';
+const CODE_INIT = `// 编写如下的匿名箭头函数
+// 不需要添加函数表达式即可
+/**
+ * @param  {} event 在 POST 请求下，body 会被传递给 event 对象
+ * @param  {} ctx Koa 的 ctx 上下文对象
+ */
+(event, ctx) => {
+  return { message: 'it works!', status: 'ok ', event, ctx };
+};
+`;
 
 type useMonaco = {
   createMonacoInstance: (dom: HTMLElement, code?: string) => void;
@@ -37,7 +46,7 @@ const useMonaco = (): useMonaco => {
   // 根据 ref 创建 monaco 实例
   const createMonacoInstance = (dom: HTMLElement, code: string = CODE_INIT) => {
     monacoInstance = monaco.editor.create(dom, {
-      value: 'console.log("hello,world")',
+      value: code,
       language: 'javascript',
       automaticLayout: true,
     });

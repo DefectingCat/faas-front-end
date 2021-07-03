@@ -20,6 +20,7 @@ import {
   ElDivider,
   ElSkeleton,
   ElSkeletonItem,
+  ElButton,
 } from 'element-plus';
 
 const components = [
@@ -36,6 +37,7 @@ const components = [
   ElDivider,
   ElSkeleton,
   ElSkeletonItem,
+  ElButton,
 ];
 
 export default components;

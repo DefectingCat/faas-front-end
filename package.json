@@ -6,6 +6,8 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^5.0.3",
+    "axios": "^0.21.1",
     "element-plus": "^1.0.2-beta.54",
     "monaco-editor": "^0.25.2",
     "vue": "^3.0.5",
