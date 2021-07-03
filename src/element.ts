@@ -1,5 +1,3 @@
-import { ElMenu, ElSubmenu, ElMenuItem } from 'element-plus';
-
 // CSS
 import 'element-plus/packages/theme-chalk/src/base.scss';
 // international
@@ -8,6 +6,38 @@ import 'dayjs/locale/zh-cn';
 import locale from 'element-plus/lib/locale';
 locale.use(lang);
 
-const components = [ElMenu, ElSubmenu, ElMenuItem];
+import {
+  ElMenu,
+  ElMenuItem,
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElForm,
+  ElFormItem,
+  ElInput,
+  ElRadio,
+  ElRadioGroup,
+  ElDivider,
+  ElSkeleton,
+  ElSkeletonItem,
+  ElButton,
+} from 'element-plus';
+
+const components = [
+  ElMenu,
+  ElMenuItem,
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElForm,
+  ElFormItem,
+  ElInput,
+  ElRadio,
+  ElRadioGroup,
+  ElDivider,
+  ElSkeleton,
+  ElSkeletonItem,
+  ElButton,
+];
 
 export default components;
