@@ -21,6 +21,10 @@ import {
   ElSkeleton,
   ElSkeletonItem,
   ElButton,
+  ElTable,
+  ElTableColumn,
+  ElPopconfirm,
+  ElTooltip,
 } from 'element-plus';
 
 const components = [
@@ -38,6 +42,10 @@ const components = [
   ElSkeleton,
   ElSkeletonItem,
   ElButton,
+  ElTable,
+  ElTableColumn,
+  ElPopconfirm,
+  ElTooltip,
 ];
 
 export default components;

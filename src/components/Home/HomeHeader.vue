@@ -21,6 +21,7 @@ import HomeMenu from '../common/HomeMenu.vue';
   span {
     font-size: 24px;
     margin-right: 12px;
+    user-select: none;
   }
 }
 .home-menu {

@@ -35,7 +35,9 @@ const state = reactive<State>({
     funContext: '',
   },
   createRules: {
+    userId: [{ required: true, trigger: 'blur' }],
     funcName: [{ required: true, message: '请输入函数名称', trigger: 'blur' }],
+    timeout: [{ required: true, trigger: 'blur' }],
   },
 });
 const { createForm, createRules } = toRefs(state);

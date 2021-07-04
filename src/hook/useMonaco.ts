@@ -29,7 +29,7 @@ const CODE_INIT = `// 编写如下的匿名箭头函数
  * @param  {} event 在 POST 请求下，body 会被传递给 event 对象
  * @param  {} ctx Koa 的 ctx 上下文对象
  */
-(event, ctx) => {
+ module.exports = (event, ctx) => {
   return { message: 'it works!', status: 'ok ', event, ctx };
 };
 `;

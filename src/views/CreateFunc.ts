@@ -13,6 +13,11 @@ type createFunc = {
   addFunc: (funContext: string) => void;
 };
 
+/**
+ * 该函数用于验证表单
+ * 并将函数发送给服务器
+ * @param  {State['createForm']} funcData 表单与函数体
+ */
 const createFunc = (funcData: State['createForm']): createFunc => {
   // 表单 ref
   const form = ref<{
