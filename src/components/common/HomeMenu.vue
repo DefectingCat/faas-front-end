@@ -18,11 +18,14 @@
 
 <script lang="ts" setup>
 import { ref } from '@vue/reactivity';
-import { useRoute } from 'vue-router';
+import { onBeforeRouteUpdate, useRoute } from 'vue-router';
 
-// 激活当前路由对应标签
 const route = useRoute();
+// 激活当前路由对应标签
 const activeIndex = ref(route.path);
+onBeforeRouteUpdate((to) => {
+  activeIndex.value = to.path;
+});
 
 const goGithub = () => {
   window.open('https://github.com/DefectingCat');

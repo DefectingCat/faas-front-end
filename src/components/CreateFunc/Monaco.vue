@@ -14,14 +14,23 @@ import type { editor } from 'monaco-editor';
 const { createMonacoInstance, getMonacoInstance, destoryCodeEditor } =
   useMonaco();
 
+// 编辑器 ref
 const monacoElement = ref();
 
+const props = defineProps<{
+  funContext: string;
+}>();
 const emit = defineEmits(['asyncDone', 'addFunc']);
 
 let monacoInstance: editor.IStandaloneCodeEditor | null = null;
 onMounted(async () => {
   await nextTick();
-  createMonacoInstance(monacoElement.value);
+  if (props.funContext) {
+    createMonacoInstance(monacoElement.value, props.funContext);
+  } else {
+    createMonacoInstance(monacoElement.value);
+  }
+
   monacoInstance = getMonacoInstance();
   // 通知父组件加载完成
   emit('asyncDone', monacoInstance);

@@ -1,5 +1,6 @@
 import { ElForm, ElMessage } from 'element-plus';
 import { Ref, ref } from 'vue';
+import { useStore } from 'vuex';
 import useAxios from '../hook/useAxios';
 import type { State } from '../types/CreateFunc';
 
@@ -19,6 +20,8 @@ type createFunc = {
  * @param  {State['createForm']} funcData 表单与函数体
  */
 const createFunc = (funcData: State['createForm']): createFunc => {
+  const store = useStore();
+
   // 表单 ref
   const form = ref<{
     form: InstanceType<typeof ElForm>;
@@ -39,6 +42,8 @@ const createFunc = (funcData: State['createForm']): createFunc => {
         if (data.state === 'ok') {
           ElMessage.success('保存成功');
         }
+      } else {
+        ElMessage.warning('不可为空');
       }
     });
   };

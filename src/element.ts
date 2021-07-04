@@ -23,7 +23,6 @@ import {
   ElButton,
   ElTable,
   ElTableColumn,
-  ElPopconfirm,
   ElTooltip,
 } from 'element-plus';
 
@@ -44,7 +43,6 @@ const components = [
   ElButton,
   ElTable,
   ElTableColumn,
-  ElPopconfirm,
   ElTooltip,
 ];
 

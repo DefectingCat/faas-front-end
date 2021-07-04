@@ -12,13 +12,24 @@
         >
           查看
         </el-button>
-        <el-popconfirm title="确定删除该函数吗？" @confirm="delFunc(row.name)">
-          <template #reference>
-            <el-button type="danger" icon="el-icon-delete" plain size="mini">
-              删除
-            </el-button>
-          </template>
-        </el-popconfirm>
+        <el-button
+          type="info"
+          icon="el-icon-edit"
+          plain
+          size="mini"
+          @click="editFunc(row.name)"
+        >
+          编辑
+        </el-button>
+        <el-button
+          type="danger"
+          icon="el-icon-delete"
+          plain
+          size="mini"
+          @click="delFunc(row.name)"
+        >
+          删除
+        </el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -28,9 +39,13 @@
 import { onMounted, reactive, toRefs } from 'vue';
 import useListFunc from './useListFunc';
 import useAxios from '../hook/useAxios';
-import { ElMessage } from 'element-plus';
+import { ElMessage, ElMessageBox } from 'element-plus';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 const axios = useAxios();
+const store = useStore();
+const router = useRouter();
 
 const state = reactive({
   userId: window.localStorage.getItem('userId'),
@@ -66,25 +81,52 @@ type delResult = {
  * @param  {string} funcName 函数名称
  */
 const delFunc = async (funcName: string) => {
-  const { data: result } = await axios.delete<delResult>('/api/list', {
-    data: {
-      userId: state.userId,
-      funcName,
-    },
+  try {
+    await ElMessageBox.confirm('删除后无法恢复，确定删除？', '确认信息', {
+      distinguishCancelAndClose: true,
+      confirmButtonText: '删除',
+      cancelButtonText: '取消',
+    });
+
+    const { data: result } = await axios.delete<delResult>('/api/list', {
+      data: {
+        userId: state.userId,
+        funcName,
+      },
+    });
+
+    switch (result.state) {
+      case 'ok': {
+        ElMessage.success('删除成功!');
+        state.list = await useListFunc(state.userId);
+        break;
+      }
+      case 'error': {
+        ElMessage.error('删除失败!');
+        state.list = await useListFunc(state.userId);
+        break;
+      }
+    }
+  } catch (e) {
+    console.log(e);
+    ElMessage.info('取消删除');
+  }
+};
+
+type editResult = {
+  userId: string;
+  funContext: string;
+};
+const editFunc = async (funcName: string) => {
+  const { data: result } = await axios.post<editResult>('/api/edit', {
+    userId: state.userId,
+    funcName,
   });
 
-  switch (result.state) {
-    case 'ok': {
-      ElMessage.success('删除成功!');
-      state.list = await useListFunc(state.userId);
-      break;
-    }
-    case 'error': {
-      ElMessage.success('删除失败!');
-      state.list = await useListFunc(state.userId);
-      break;
-    }
-  }
+  if (result.funContext === 'error') return ElMessage.error('请求错误!');
+  // 将函数名称和内容保存到 store，在编辑函数页面使用
+  store.commit('saveFunc', { funcName, funContext: result.funContext });
+  router.push('/create');
 };
 </script>
 
