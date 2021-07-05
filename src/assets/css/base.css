@@ -3,12 +3,130 @@
   margin: 0;
 }
 
+/* dark mode */
+:root {
+  --text-color: rgb(0, 0, 0);
+  --main-background: #fff;
+  --markdown-color: rgb(0, 0, 0);
+  --main-border: rgb(238, 238, 238);
+  --code-color: #f6f8fa;
+  --input-bg: #f5f7fa;
+  --hover-color: #ececec;
+}
+
+/* media query */
+@media (prefers-color-scheme: dark) {
+  /* When prefers-color-scheme is dark mode (system level) */
+  /* Avoid overwriting user custom color mode */
+  :root:not([color-scheme]) {
+    --text-color: rgb(255, 152, 0);
+    --main-background: #333;
+    --main-border: rgb(87, 87, 87);
+    --markdown-color: rgb(167, 167, 167);
+    --code-color: #4c4c4c;
+    --input-bg: #5a5a5a;
+    --hover-color: #747474;
+  }
+}
+
+/* User custom color mode is dark */
+[color-scheme='dark'] {
+  --text-color: rgb(255, 152, 0);
+  --main-background: #333;
+  --main-border: rgb(87, 87, 87);
+  --markdown-color: rgb(167, 167, 167);
+  --code-color: #4c4c4c;
+  --input-bg: #5a5a5a;
+  --hover-color: #747474;
+}
+
 html,
 body,
 #app {
   height: 100%;
+  color: var(--text-color);
+  background-color: var(--main-background);
 }
 
 #app {
   min-width: 768px;
+}
+
+@font-face {
+  font-family: 'Caveat-Regular';
+  src: url('../font/Caveat-Regular.woff') format('woff');
+}
+
+/* 适配 dark mode */
+.el-menu {
+  background-color: transparent;
+}
+.el-button,
+.el-button--primary,
+.is-plain {
+  color: var(--text-color) !important;
+  background-color: transparent !important;
+  border: 1px solid var(--main-border) !important;
+}
+.el-tabs--border-card {
+  background: transparent !important;
+  border: 1px solid var(--main-border) !important;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 12%), 0 0 6px 0 rgb(0 0 0 / 4%);
+}
+.el-tabs--border-card > .el-tabs__header {
+  background-color: transparent !important;
+  border-bottom: 1px solid var(--main-border) !important;
+}
+.el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
+  color: var(--text-color) !important;
+  background-color: transparent !important;
+}
+.markdown-body {
+  color: var(--markdown-color) !important;
+}
+.markdown-body > pre {
+  background-color: var(--code-color) !important;
+}
+.el-menu--horizontal > .el-menu-item.is-active {
+  border-bottom: 2px solid var(--main-border) !important;
+  color: var(--text-color) !important;
+}
+.el-menu--horizontal > .el-menu-item:not(.is-disabled):hover,
+.el-menu--horizontal > .el-menu-item:not(.is-disabled):focus {
+  background-color: var(--hover-color) !important;
+}
+.el-input.is-disabled .el-input__inner {
+  background-color: var(--input-bg) !important;
+  border-color: var(--main-border) !important;
+  color: var(--text-color) !important;
+}
+.el-input__inner {
+  background-color: var(--input-bg) !important;
+  border-color: var(--main-border) !important;
+  color: var(--text-color) !important;
+}
+.el-input-group__append {
+  background-color: var(--input-bg) !important;
+  border-color: var(--main-border) !important;
+  color: var(--text-color) !important;
+}
+.el-divider__text {
+  background-color: var(--main-background) !important;
+  color: var(--text-color) !important;
+}
+.el-table th,
+.el-table tr {
+  background-color: var(--main-background) !important;
+  color: var(--text-color) !important;
+}
+.el-table th.is-leaf,
+.el-table td {
+  border-bottom: 1px solid var(--main-border) !important;
+}
+.el-table th.is-leaf,
+.el-table td {
+  border-bottom-color: var(--main-border) !important;
+}
+.el-table--enable-row-hover .el-table__body tr:hover > td {
+  background-color: var(--hover-color) !important;
 }
