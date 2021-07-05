@@ -131,7 +131,7 @@ const editFunc = async (funcName: string) => {
 </script>
 
 <style scoped lang="scss">
-:deep(.el-table__row .cell) {
-  color: rgb(129, 115, 211);
-}
+// :deep(.el-table__row .cell) {
+//   color: rgb(129, 115, 211);
+// }
 </style>

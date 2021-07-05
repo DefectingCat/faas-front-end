@@ -38,7 +38,21 @@ type useMonaco = {
   createMonacoInstance: (dom: HTMLElement, code?: string) => void;
   getMonacoInstance: () => monaco.editor.IStandaloneCodeEditor;
   destoryCodeEditor: () => void;
+  setMonacoTheme: (theme: 'vs' | 'vs-dark') => void;
 };
+
+/* const getMonacoTheme = (theme?: 'light' | 'dark' | 'highContrast') => {
+  switch (theme) {
+    case 'light':
+      return 'vs';
+    case 'dark':
+      return 'vs-dark';
+    case 'highContrast':
+      return 'hc-black';
+    default:
+      return 'vs';
+  }
+}; */
 
 const useMonaco = (): useMonaco => {
   let monacoInstance: monaco.editor.IStandaloneCodeEditor;
@@ -49,6 +63,9 @@ const useMonaco = (): useMonaco => {
       value: code,
       language: 'javascript',
       automaticLayout: true,
+      minimap: {
+        enabled: false,
+      },
     });
   };
 
@@ -64,10 +81,15 @@ const useMonaco = (): useMonaco => {
     }
   };
 
+  const setMonacoTheme = (theme: 'vs' | 'vs-dark') => {
+    monaco.editor.setTheme(theme);
+  };
+
   return {
     createMonacoInstance,
     getMonacoInstance,
     destoryCodeEditor,
+    setMonacoTheme,
   };
 };
 

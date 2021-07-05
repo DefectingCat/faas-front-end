@@ -8,6 +8,10 @@ const store = createStore<State>({
   state: {
     funcName: '',
     funContext: '',
+    isDark:
+      window.localStorage.getItem('vueuse-color-scheme') === 'dark'
+        ? true
+        : false,
   },
   mutations,
   getters,

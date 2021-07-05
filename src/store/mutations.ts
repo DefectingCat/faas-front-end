@@ -14,6 +14,9 @@ const mutations: MutationTree<State> = {
     state.funcName = '';
     state.funContext = '';
   },
+  toggleDark(state, isDark: boolean) {
+    state.isDark = isDark;
+  },
 };
 
 export default mutations;
