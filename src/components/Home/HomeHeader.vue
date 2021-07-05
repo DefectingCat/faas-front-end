@@ -19,6 +19,7 @@ import HomeMenu from '../common/HomeMenu.vue';
     height: 60px;
   }
   span {
+    font-family: 'Caveat-Regular';
     font-size: 24px;
     margin-right: 12px;
     user-select: none;

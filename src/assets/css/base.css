@@ -12,3 +12,8 @@ body,
 #app {
   min-width: 768px;
 }
+
+@font-face {
+  font-family: 'Caveat-Regular';
+  src: url('../font/Caveat-Regular.woff') format('woff');
+}

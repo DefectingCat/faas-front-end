@@ -1,10 +1,10 @@
 // CSS
 import 'element-plus/packages/theme-chalk/src/base.scss';
 // international
-import lang from 'element-plus/lib/locale/lang/zh-cn';
-import 'dayjs/locale/zh-cn';
-import locale from 'element-plus/lib/locale';
-locale.use(lang);
+// import lang from 'element-plus/lib/locale/lang/zh-cn';
+// import 'dayjs/locale/zh-cn';
+// import locale from 'element-plus/lib/locale';
+// locale.use(lang);
 
 import {
   ElMenu,
@@ -24,6 +24,10 @@ import {
   ElTable,
   ElTableColumn,
   ElTooltip,
+  ElRow,
+  ElCol,
+  ElTabs,
+  ElTabPane,
 } from 'element-plus';
 
 const components = [
@@ -44,6 +48,10 @@ const components = [
   ElTable,
   ElTableColumn,
   ElTooltip,
+  ElRow,
+  ElCol,
+  ElTabs,
+  ElTabPane,
 ];
 
 export default components;

@@ -5,6 +5,7 @@ import router from './router';
 import store from './store';
 
 import './assets/css/base.css';
+import 'github-markdown-css';
 
 const app = createApp(App);
 
