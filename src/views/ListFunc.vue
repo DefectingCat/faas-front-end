@@ -42,6 +42,7 @@ import useAxios from '../hook/useAxios';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import api from '../hook/apiConfig';
 
 const axios = useAxios();
 const store = useStore();
@@ -65,7 +66,7 @@ onMounted(async () => {
 });
 const { list } = toRefs(state);
 
-const base_url = `http://127.0.0.1:3001/${state.userId}/`;
+const base_url = `${api.host}/${state.userId}/`;
 /**
  * 利用 window.open 打开新的窗口
  * 用于直接访问函数

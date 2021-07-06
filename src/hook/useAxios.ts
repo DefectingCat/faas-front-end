@@ -1,11 +1,12 @@
 import axios, { AxiosInstance } from 'axios';
+import api from './apiConfig';
 
 let axiosInstance: AxiosInstance | null = null;
 
 const useAxios = (): AxiosInstance => {
   if (axiosInstance == null) {
     axiosInstance = axios.create({
-      baseURL: 'http://127.0.0.1:3001',
+      baseURL: api.host,
       timeout: 5000,
     });
 
