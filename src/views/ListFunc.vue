@@ -47,17 +47,21 @@ const axios = useAxios();
 const store = useStore();
 const router = useRouter();
 
-const state = reactive({
+type State = {
+  userId: string | null;
+  list: {
+    name: string;
+  }[];
+};
+
+const state = reactive<State>({
   userId: window.localStorage.getItem('userId'),
-  list: [
-    {
-      name: '',
-    },
-  ],
+  list: [],
 });
 
 onMounted(async () => {
-  state.list = await useListFunc(state.userId);
+  const list = await useListFunc(state.userId);
+  if (list) state.list = list;
 });
 const { list } = toRefs(state);
 
@@ -98,12 +102,14 @@ const delFunc = async (funcName: string) => {
     switch (result.state) {
       case 'ok': {
         ElMessage.success('删除成功!');
-        state.list = await useListFunc(state.userId);
+        const list = await useListFunc(state.userId);
+        if (list) state.list = list;
         break;
       }
       case 'error': {
         ElMessage.error('删除失败!');
-        state.list = await useListFunc(state.userId);
+        const list = await useListFunc(state.userId);
+        if (list) state.list = list;
         break;
       }
     }

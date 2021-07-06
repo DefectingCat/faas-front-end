@@ -31,16 +31,20 @@ const createFunc = (funcData: State['createForm']): createFunc => {
     // 验证表单
     formDom?.validate(async (value) => {
       if (value && funContext) {
-        funcData.funContext = funContext;
-        const { data } = await axios.post<{
-          userId: string;
-          state: string;
-        }>('/api/create', funcData);
-        if (data.state === 'ok') {
-          ElMessage.success('保存成功');
+        try {
+          funcData.funContext = funContext;
+          const { data } = await axios.post<{
+            userId: string;
+            state: string;
+          }>('/api/create', funcData);
+          if (data.state === 'ok') {
+            ElMessage.success('保存成功!');
+          }
+        } catch (e) {
+          ElMessage.error('请求超时!');
         }
       } else {
-        ElMessage.warning('不可为空');
+        ElMessage.warning('表单或函数内容不可为空!');
       }
     });
   };
