@@ -27,6 +27,16 @@ module.exports = (event, ctx) => {
 
 为了避免事件循环乃至任务队列的死循环，函数同步异步执行都有超时时间限制。目前为 3000ms，暂时无法修改。
 
+### 示例函数
+
+可以直接访问根目录下 func、func2 和 func3 三个示例函数。它们分别是：
+
+* func：返回 event 和 ctx 参数；
+* func2：基于事件循环的死循环；
+* func3：基于任务队列的死循环；
+
+可以使用这样的地址直接访问测试：\`https://api.defectink.com/faas/func\`。
+
 ## 性能
 
 创建函数中使用了 [Monaco editor](https://microsoft.github.io/monaco-editor/)，它本质上就是 VSCode 的简化版，并且利用了 Web worker，在第一次运行是可能会比较缓慢。

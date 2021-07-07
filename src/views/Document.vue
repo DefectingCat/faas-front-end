@@ -3,7 +3,9 @@
     <el-tab-pane label="快速开始">
       <div class="markdown-body" v-html="result"></div>
     </el-tab-pane>
-    <el-tab-pane label="API 文档">API 文档</el-tab-pane>
+    <el-tab-pane label="API 文档">
+      <div class="markdown-body" v-html="apiDoc"></div>
+    </el-tab-pane>
     <el-tab-pane label="Q&A">
       <div class="markdown-body" v-html="qaContext"></div>
     </el-tab-pane>
@@ -14,11 +16,13 @@
 import useMarkdown from '../hook/useMarkdown';
 import context from '../assets/doc/quick-start';
 import qa from '../assets/doc/Q&A';
+import api from '../assets/doc/api';
 
 const { mdRender } = useMarkdown();
 
 const result = mdRender(context);
 const qaContext = mdRender(qa);
+const apiDoc = mdRender(api);
 </script>
 
 <style scoped lang="scss">
